@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);
 
-// app.put("/clients/:clientId/:poseId",clientsController.deleteClientPoseById)
+app.delete("/poses/:poseId",posesController.deleteClientPoseById)
 
 app.put("/clients/:clientId/poses",clientsController.deleteClientPoses)
 

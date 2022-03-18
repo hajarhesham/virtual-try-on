@@ -39,21 +39,9 @@ const deleteClientById = (req,res) => {
     const clientId = parseInt(req.params.clientId);
     clientsDB = clientsDB.filter((client) => client.id !== clientId);
     res.send({ message: `client with id:${req.params.clientId} has been deleted successfully` });
-    }
-;    
-// delete client pose by id
-// const deleteClientPoseById = (req,res)=>{
-//     const poseId = parseInt(req.params.poseId);
-//     const clientId = parseInt(req.params.clientId);
-//     const client = clientsDB.find((client) => client.id === clientId)
-//     if(client){
-//         client.poses.filter((pose.id) => pose.id !== poseId);
-//     }
-//         (client)=>{
-        
-//     })   
-//     res.send(`Pose with id:${req.params.poseId} has been deleted`)
-// }
+}
+   
+
 // delete client poses
 const deleteClientPoses = (req,res)=>{
     const clientId = parseInt(req.params.clientId);
