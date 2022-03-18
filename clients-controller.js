@@ -20,6 +20,8 @@ let clientsDB = [
     },
 ];
 
+
+
 // get client measurements by id
 // get client poses ids & names
 // get client photo by id
@@ -33,7 +35,16 @@ let clientsDB = [
 // update client name
 
 // delete client by id
+const deleteClientById = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    clientsDB = clientsDB.filter((client) => client.id !== clientId);
+    res.send({ message: "Success" });
+    }
+;    
 // delete client pose by id
 // delete client poses
 // delete client photo
 // delete client name
+module.exports = {
+    deleteClientById
+};

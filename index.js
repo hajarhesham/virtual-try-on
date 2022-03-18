@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const clientController = require("");
+const clientsController = require("./clients-controller.js");
+const posesController = require("./poses-controller.js");
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -19,7 +21,10 @@ app.use(bodyParser.json());
 // update client name
 
 // delete client by id
-// delete client pose by id
-// delete client poses
-// delete client photo
-// delete client name
+app.delete("/clients/:clientId",clientsController.deleteClientById);
+
+
+
+app.listen(3000, ()=>
+    console.log("Server is running on http://localhost:3000")
+);
