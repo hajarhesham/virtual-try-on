@@ -22,13 +22,13 @@ app.use(bodyParser.json());
 
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);
-
+// delete client pose by id
 app.delete("/poses/:poseId",posesController.deleteClientPoseById)
-
+// delete client poses
 app.put("/clients/:clientId/poses",clientsController.deleteClientPoses)
-
+// delete client photo
 app.put("/clients/:clientId/photo",clientsController.deleteClientPhoto)
-
+// delete client name
 app.put("/clients/:clientId/name",clientsController.deleteClientName)
 
 app.listen(8080, ()=>
