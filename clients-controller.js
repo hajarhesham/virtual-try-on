@@ -64,7 +64,14 @@ const deleteClientPhoto = (req,res)=>{
 }
 
 // delete client name
-const deleteClientName = (req,res)=>{}
+const deleteClientName = (req,res)=>{
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId)
+    if(client){
+        clientsDB[clientId].name = null;
+        res.send('Name has been deleted');
+    }
+}
 
 
 module.exports = {
