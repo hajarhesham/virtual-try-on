@@ -40,6 +40,10 @@ app.put("/clients/:id", clientsController.updateClientHandler);
 // delete client photo
 // delete client name
 
+
+// add new pose
+app.post("/clients", posesController.createPoseHandler);
+
 app.listen(8080, ()=>
     console.log("Server is running on http://localhost:8080")
 );
