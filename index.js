@@ -28,11 +28,11 @@ app.get("/clients/:clientId/photo",clientsController.getPhotoById);
 app.get("/clients/:clientId/gender",clientsController.getGenderById);
 
 // add new client 
+app.post("/clients", clientsController.createClientHandler);
 
-// update client measurements
-// update client gender 
-// update client photo
-// update client name
+// update client info 
+app.put("/clients/:id", clientsController.updateClientHandler);
+
 
 // delete client by id
 // delete client pose by id

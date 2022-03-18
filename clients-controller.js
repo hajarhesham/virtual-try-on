@@ -76,12 +76,33 @@ const getGenderById = (req,res) => {
 };
 
 
-// add new client 
 
-// update client measurements
-// update client gender 
-// update client photo
-// update client name
+// add new client 
+const createClientHandler = (req, res) => {
+
+    const id = clientsDB.length + 1;
+    clientsDB.push({ ...req.body, id });
+    res.send({ id, ...req.body });
+};
+
+
+// update client 
+const updateClientHandler = (req, res) => {
+
+    const id = parseInt(req.params.id);
+    const clientIndex = clientsDB.findIndex(
+      (client) => client.id === id
+     );
+    if (clientIndex !== -1) {
+        clientsDB[clientIndex] = {
+         ...clientsDB[clientIndex],
+         ...req.body,
+        };
+        res.send(clientsDB[clientIndex]);
+    } else {
+        res.status(404).send({ error: "NOTFOUND" });
+    }
+};
 
 // delete client by id
 // delete client pose by id
@@ -94,5 +115,7 @@ module.exports = {
     getMeasurementsById,
     getAllPoses,
     getPhotoById,
-    getGenderById
+    getGenderById,
+    updateClientHandler, 
+    createClientHandler
 };
