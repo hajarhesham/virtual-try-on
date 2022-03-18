@@ -23,7 +23,13 @@ app.use(bodyParser.json());
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);
 
+// app.put("/clients/:clientId/:poseId",clientsController.deleteClientPoseById)
 
+app.put("/clients/:clientId/poses",clientsController.deleteClientPoses)
+
+app.put("/clients/:clientId/photo",clientsController.deleteClientPhoto)
+
+app.put("/clients/:clientId/name",clientsController.deleteClientName)
 
 app.listen(3000, ()=>
     console.log("Server is running on http://localhost:3000")
