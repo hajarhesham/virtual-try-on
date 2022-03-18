@@ -21,9 +21,60 @@ let clientsDB = [
 ];
 
 // get client measurements by id
-// get client poses ids & names
+const getClientById = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId);
+    if (client) {
+        res.send(client);
+    } else {
+        res.status(404).send({error: "client Not Found"});
+    }
+};    
+
+// get client measurements by id
+const getMeasurementsById = (req,res) => {
+    const clientId = parseInt(req.params.clientId); 
+    const client = clientsDB.find((client) => client.id === clientId);
+    if (client) {
+        res.send(client.measurements);
+    } else {
+        res.status(404).send({error: "client Not Found" });
+    }
+};
+
+// get client poses ids
+const getAllPoses = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId);
+    if (client) {
+        res.send(client.poses.map((pose) => pose.id));
+    } else {
+        res.status(404).send({error: "client Not Found" });
+    }
+};
+
 // get client photo by id
+const getPhotoById = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId);
+    if (client) {
+        res.send(client.photo);
+    } else {
+        res.status(404).send({error: "client Not Found" });
+    }
+};
+
 // get client gender by id
+const getGenderById = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId); 
+    if (client) {
+        res.send(client.gender);
+    } else {
+        res.status(404).send({error: "client Not Found" });
+    }
+};
+
 
 // add new client 
 
@@ -37,3 +88,11 @@ let clientsDB = [
 // delete client poses
 // delete client photo
 // delete client name
+
+module.exports = {
+    getClientById,
+    getMeasurementsById,
+    getAllPoses,
+    getPhotoById,
+    getGenderById
+};
