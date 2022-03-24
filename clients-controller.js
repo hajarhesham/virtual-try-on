@@ -20,6 +20,8 @@ let clientsDB = [
     },
 ];
 
+
+
 // get client measurements by id
 const getClientById = (req,res) => {
     const clientId = parseInt(req.params.clientId);
@@ -84,15 +86,54 @@ const getGenderById = (req,res) => {
 // update client name
 
 // delete client by id
-// delete client pose by id
+const deleteClientById = (req,res) => {
+    const clientId = parseInt(req.params.clientId);
+    clientsDB = clientsDB.filter((client) => client.id !== clientId);
+    res.send({ message: `client with id:${req.params.clientId} has been deleted successfully` });
+}
+   
+
 // delete client poses
+const deleteClientPoses = (req,res)=>{
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId)
+    if(client){
+        clientsDB[clientId].poses = null
+        res.send('Poses have been deleted')
+    }
+}
+
 // delete client photo
+const deleteClientPhoto = (req,res)=>{
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId)
+    if(client){
+        clientsDB[clientId].photo = null;
+        res.send('photo has been deleted');
+    }
+    
+}
+
 // delete client name
+const deleteClientName = (req,res)=>{
+    const clientId = parseInt(req.params.clientId);
+    const client = clientsDB.find((client) => client.id === clientId)
+    if(client){
+        clientsDB[clientId].name = null;
+        res.send('Name has been deleted');
+    }
+}
+
 
 module.exports = {
     getClientById,
     getMeasurementsById,
     getAllPoses,
     getPhotoById,
-    getGenderById
+    getGenderById,
+    deleteClientById,
+    deleteClientPoses,
+    deleteClientPhoto,
+    deleteClientName
 };
+
