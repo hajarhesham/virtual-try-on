@@ -29,6 +29,12 @@ const getNameById = (req,res) => {
 };
 
 // add new pose
+const createPoseHandler = (req,res) => {
+    const id = posesDB.length + 1;
+    posesDB.push({ ...req.body, id });
+    res.send({ id, ...req.body });
+};
+
 
 // delete pose
 const deleteClientPoseById = (req,res) =>{
@@ -42,6 +48,7 @@ const deleteClientPoseById = (req,res) =>{
 module.exports = {
     getNameById, 
     getThetaById,
+    createPoseHandler,
     deleteClientPoseById
 };
 

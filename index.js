@@ -29,11 +29,11 @@ app.get("/clients/:clientId/photo",clientsController.getPhotoById);
 app.get("/clients/:clientId/gender",clientsController.getGenderById);
 
 // add new client 
+app.post("/clients", clientsController.createClientHandler);
 
-// update client measurements
-// update client gender 
-// update client photo
-// update client name
+// update client info 
+app.put("/clients/:id", clientsController.updateClientHandler);
+
 
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);
@@ -47,6 +47,10 @@ app.put("/clients/:clientId/photo",clientsController.deleteClientPhoto)
 app.put("/clients/:clientId/name",clientsController.deleteClientName)
 
 
+
+
+// add new pose
+app.post("/clients", posesController.createPoseHandler);
 
 app.listen(8080, ()=>
     console.log("Server is running on http://localhost:8080")
