@@ -1,15 +1,11 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const clientsController = require("./clients-controller.js");
 const posesController = require("./poses-controller.js");
-const connectDB = require('./config/db');
 
-
-connectDB()
-
+require('./config/db')();
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 // get all clients
 app.get("/clients",clientsController.getClients);
