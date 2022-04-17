@@ -1,24 +1,24 @@
-let clientsDB = [
-    {
-        id:0,
-        name:"fathy",
-        photo:"pic", // pic.jpg.enc
-        poses:[
-            {id:0},
-            {id:1}
-        ],
-        measurements:{
-            height:170,
-            weight:80,
-            chest:50,
-            waist:40,
-            hip:40,
-            inseam:90,
-            sholder:50
-        },
-        gender:"Male"
-    },
-];
+//let clientsDB = [
+    //{
+        //id:0,
+        //name:"fathy",
+        //photo:"pic", // pic.jpg.enc
+        //poses:[
+            //{id:0},
+            //{id:1}
+        //],
+        //measurements:{
+            //height:170,
+            //weight:80,
+            //chest:50,
+            //waist:40,
+            //hip:40,
+            //inseam:90,
+            //sholder:50
+        //},
+        //gender:"Male"
+    //},
+//];
 
 const asyncHandler = require('express-async-handler')
 const Client = require('./models/clientModel')
@@ -106,21 +106,13 @@ const createClientHandler = asyncHandler(async (req, res) => {
 });
 
 // update client 
+// working
 const updateClientHandler = asyncHandler(async (req, res) => {
 
-    const id = parseInt(req.params.id);
-    const clientIndex = clientsDB.findIndex(
-      (client) => client.id === id
-     );
-    if (clientIndex !== -1) {
-        clientsDB[clientIndex] = {
-         ...clientsDB[clientIndex],
-         ...req.body,
-        };
-        res.send(clientsDB[clientIndex]);
-    } else {
-        res.status(404).send({ error: "NOTFOUND" });
-    }
+    const id = req.params.id;
+    const body = req.body;
+    const clientIndex = await Client.updateOne({_id: id}, {$set: body});
+    res.status(200).send(clientIndex);
 });
 
 // delete client by id

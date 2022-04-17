@@ -19,10 +19,16 @@ app.get("/clients/:clientId/measurements",clientsController.getMeasurementsById)
 // get client poses ids
 app.get("/clients/:clientId/poses",clientsController.getAllPoses);
 
-// get client theta by id
+// get poses
+app.get("/poses",posesController.getPoses);
+
+// get pose by id
+app.get("/poses/:poseId",posesController.getPoseById);
+
+// get pose name by id
 app.get("/poses/:poseId/name",posesController.getNameById);
 
-// get client theta by id
+// get pose theta by id
 app.get("/poses/:poseId/theta",posesController.getThetaById);
 
 // get client photo by id
@@ -46,7 +52,7 @@ app.put("/clients/:clientId/name",clientsController.deleteClientName)
 
 
 // add new pose
-app.post("/clients", posesController.createPoseHandler);
+app.post("/poses", posesController.createPoseHandler);
 
 // add new client 
 app.post("/clients", clientsController.createClientHandler);
