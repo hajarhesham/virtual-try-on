@@ -12,4 +12,4 @@ const poseSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('PoseModel', poseSchema);
+module.exports = mongoose.model('Pose', poseSchema);
