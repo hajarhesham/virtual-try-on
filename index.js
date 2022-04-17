@@ -1,11 +1,20 @@
 const express = require("express");
+const color = require('color')
 const bodyParser = require("body-parser");
 const clientsController = require("./clients-controller.js");
 const posesController = require("./poses-controller.js");
+const dotenv = require('dotenv').config()
+const connectDB = require('./config/db')
+
+
+connectDB()
 
 
 const app = express();
 app.use(bodyParser.json());
+
+// get all clients
+app.get("/clients",clientsController.getClients);
 
 // get client by id
 app.get("/clients/:clientId",clientsController.getClientById);

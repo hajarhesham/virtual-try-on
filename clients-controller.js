@@ -20,76 +20,96 @@ let clientsDB = [
     },
 ];
 
+const asyncHandler = require('express-async-handler')
+const Client = require('./models/clientModel')
 
+//working
+const getClients = asyncHandler(async (req,res) => {
+    const clients = await Client.find()
+    res.status(200).json(clients)
+}); 
+
+// get client by id
+//working
+const getClientById = asyncHandler(async (req,res) => {
+
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }else {
+        res.status(200).json(client)
+    }
+});    
 
 // get client measurements by id
-const getClientById = (req,res) => {
-    const clientId = parseInt(req.params.clientId);
-    const client = clientsDB.find((client) => client.id === clientId);
-    if (client) {
-        res.send(client);
-    } else {
-        res.status(404).send({error: "client Not Found"});
+// working
+const getMeasurementsById = asyncHandler(async (req,res) => {
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }else {
+        res.status(200).json(client.measurements)
     }
-};    
-
-// get client measurements by id
-const getMeasurementsById = (req,res) => {
-    const clientId = parseInt(req.params.clientId); 
-    const client = clientsDB.find((client) => client.id === clientId);
-    if (client) {
-        res.send(client.measurements);
-    } else {
-        res.status(404).send({error: "client Not Found" });
-    }
-};
+});
 
 // get client poses ids
-const getAllPoses = (req,res) => {
-    const clientId = parseInt(req.params.clientId);
-    const client = clientsDB.find((client) => client.id === clientId);
-    if (client) {
-        res.send(client.poses.map((pose) => pose.id));
-    } else {
-        res.status(404).send({error: "client Not Found" });
+// working
+const getAllPoses = asyncHandler(async (req,res) => {
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }else {
+        res.status(200).json(client.poses)
     }
-};
+});
 
 // get client photo by id
-const getPhotoById = (req,res) => {
-    const clientId = parseInt(req.params.clientId);
-    const client = clientsDB.find((client) => client.id === clientId);
-    if (client) {
-        res.send(client.photo);
-    } else {
-        res.status(404).send({error: "client Not Found" });
+// working
+const getPhotoById = asyncHandler(async (req,res) => {
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }else {
+        res.status(200).json(client.photo)
     }
-};
+});
 
 // get client gender by id
-const getGenderById = (req,res) => {
-    const clientId = parseInt(req.params.clientId);
-    const client = clientsDB.find((client) => client.id === clientId); 
-    if (client) {
-        res.send(client.gender);
-    } else {
-        res.status(404).send({error: "client Not Found" });
+//working
+const getGenderById = asyncHandler(async (req,res) => {
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }else {
+        res.status(200).json(client.gender)
     }
-};
+});
 
 
 
 // add new client 
-const createClientHandler = (req, res) => {
+//working
+const createClientHandler = asyncHandler(async (req, res) => {
 
-    const id = clientsDB.length + 1;
-    clientsDB.push({ ...req.body, id });
-    res.send({ id, ...req.body });
-};
+    const client = await Client.create({
+        name: req.body.name,
+        photo: req.body.photo,
+        gender: req.body.gender,
+        measurements: req.body.measurements,
+        poses: req.body.poses
+    })
+
+    res.status(200).json(client)
+});
 
 
 // update client 
-const updateClientHandler = (req, res) => {
+const updateClientHandler = asyncHandler(async (req, res) => {
 
     const id = parseInt(req.params.id);
     const clientIndex = clientsDB.findIndex(
@@ -104,28 +124,33 @@ const updateClientHandler = (req, res) => {
     } else {
         res.status(404).send({ error: "NOTFOUND" });
     }
-};
+});
 
 // delete client by id
-const deleteClientById = (req,res) => {
-    const clientId = parseInt(req.params.clientId);
-    clientsDB = clientsDB.filter((client) => client.id !== clientId);
-    res.send({ message: `client with id:${req.params.clientId} has been deleted successfully` });
-}
+// working
+const deleteClientById = asyncHandler(async (req,res) => {
+    const client = await Client.findById(req.params.clientId)
+    if (!client) {
+        res.status(400)
+        throw new Error('client not found')
+    }
+    await client.remove()
+    res.status(200).json({msg: "removed sucessfully"})
+})
    
 
 // delete client poses
-const deleteClientPoses = (req,res)=>{
+const deleteClientPoses = asyncHandler(async (req,res)=>{
     const clientId = parseInt(req.params.clientId);
     const client = clientsDB.find((client) => client.id === clientId)
     if(client){
         clientsDB[clientId].poses = null
         res.send('Poses have been deleted')
     }
-}
+})
 
 // delete client photo
-const deleteClientPhoto = (req,res)=>{
+const deleteClientPhoto = asyncHandler(async (req,res)=>{
     const clientId = parseInt(req.params.clientId);
     const client = clientsDB.find((client) => client.id === clientId)
     if(client){
@@ -133,20 +158,21 @@ const deleteClientPhoto = (req,res)=>{
         res.send('photo has been deleted');
     }
     
-}
+})
 
 // delete client name
-const deleteClientName = (req,res)=>{
+const deleteClientName = asyncHandler(async (req,res)=>{
     const clientId = parseInt(req.params.clientId);
     const client = clientsDB.find((client) => client.id === clientId)
     if(client){
         clientsDB[clientId].name = null;
         res.send('Name has been deleted');
     }
-}
+})
 
 
 module.exports = {
+    getClients,
     getClientById,
     getMeasurementsById,
     getAllPoses,
