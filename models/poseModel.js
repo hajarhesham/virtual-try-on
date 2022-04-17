@@ -8,7 +8,7 @@ const poseSchema = mongoose.Schema({
     theta: {
         type: [mongoose.SchemaTypes.Decimal128], // 24(joint) * 3(xyz) = 72
         required: [true, 'please enter theta coef'],
-        validate: [val => val.length != 72 , '']
+        validate: [val => val.length == 72 ]
     }
 });
 
