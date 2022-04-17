@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const clientSchema = mongoose.Schema({
     name: {
@@ -27,13 +27,13 @@ const clientSchema = mongoose.Schema({
     poses:[
         {
             pose_id: mongoose.SchemaTypes.ObjectId,
-            ref: "Pose"
+            ref: "PoseModel"
         }
     ]
 
 }, {
     timestamps: true
-})
+});
 
 
-module.exports = mongoose.model('Client', clientSchema)
+module.exports = mongoose.model('ClientModel', clientSchema);
