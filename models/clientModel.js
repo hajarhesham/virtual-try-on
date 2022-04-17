@@ -25,7 +25,10 @@ const clientSchema = mongoose.Schema({
     }
     ,
     poses:[
-        {pose_id:Number}
+        {
+            pose_id: mongoose.SchemaTypes.ObjectId,
+            ref: "Pose"
+        }
     ]
 
 }, {
