@@ -90,8 +90,6 @@ const getGenderById = asyncHandler(async (req,res) => {
     }
 });
 
-
-
 // add new client 
 //working
 const createClientHandler = asyncHandler(async (req, res) => {
@@ -106,7 +104,6 @@ const createClientHandler = asyncHandler(async (req, res) => {
 
     res.status(200).json(client)
 });
-
 
 // update client 
 const updateClientHandler = asyncHandler(async (req, res) => {
@@ -138,7 +135,6 @@ const deleteClientById = asyncHandler(async (req,res) => {
     res.status(200).json({msg: "removed sucessfully"})
 })
    
-
 // delete client poses
 const deleteClientPoses = asyncHandler(async (req,res)=>{
     const clientId = parseInt(req.params.clientId);
@@ -169,7 +165,6 @@ const deleteClientName = asyncHandler(async (req,res)=>{
         res.send('Name has been deleted');
     }
 })
-
 
 module.exports = {
     getClients,

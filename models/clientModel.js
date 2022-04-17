@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 const clientSchema = mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'please enter a name']
+        required: [true, 'please enter your name']
     },
     photo: {
         type: String,
-        required: [true, 'please enter an photo']
+        required: [true, 'please enter your photo']
     },
     gender: {
         type: String,
-        required: [true, 'please enter an gender']
+        required: [true, 'please enter your gender']
     },
 
     measurements:{

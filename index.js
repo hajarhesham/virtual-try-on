@@ -1,10 +1,8 @@
 const express = require("express");
-const color = require('color')
 const bodyParser = require("body-parser");
 const clientsController = require("./clients-controller.js");
 const posesController = require("./poses-controller.js");
-const dotenv = require('dotenv').config()
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
 
 
 connectDB()
@@ -37,29 +35,33 @@ app.get("/clients/:clientId/photo",clientsController.getPhotoById);
 // get client gender by id
 app.get("/clients/:clientId/gender",clientsController.getGenderById);
 
-// add new client 
-app.post("/clients", clientsController.createClientHandler);
 
 // update client info 
 app.put("/clients/:id", clientsController.updateClientHandler);
 
-
-// delete client by id
-app.delete("/clients/:clientId",clientsController.deleteClientById);
-// delete client pose by id
-app.delete("/poses/:poseId",posesController.deleteClientPoseById)
-// delete client poses
+// update client poses
 app.put("/clients/:clientId/poses",clientsController.deleteClientPoses)
-// delete client photo
+
+// update client photo
 app.put("/clients/:clientId/photo",clientsController.deleteClientPhoto)
-// delete client name
+
+// update client name
 app.put("/clients/:clientId/name",clientsController.deleteClientName)
-
-
 
 
 // add new pose
 app.post("/clients", posesController.createPoseHandler);
+
+// add new client 
+app.post("/clients", clientsController.createClientHandler);
+
+
+// delete client by id
+app.delete("/clients/:clientId",clientsController.deleteClientById);
+
+// delete client pose by id
+app.delete("/poses/:poseId",posesController.deleteClientPoseById)
+
 
 app.listen(8080, ()=>
     console.log("Server is running on http://localhost:8080")
