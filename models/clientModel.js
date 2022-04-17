@@ -26,8 +26,8 @@ const clientSchema = mongoose.Schema({
     ,
     poses:[
         {
-            pose_id: mongoose.SchemaTypes.ObjectId,
-            ref: "PoseModel"
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: 'Pose'
         }
     ]
 
@@ -35,5 +35,4 @@ const clientSchema = mongoose.Schema({
     timestamps: true
 });
 
-
-module.exports = mongoose.model('ClientModel', clientSchema);
+module.exports = mongoose.model('Client', clientSchema);
