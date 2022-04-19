@@ -65,7 +65,7 @@ app.delete("/clients/:clientId",clientsController.deleteClientById);
 app.delete("/poses/:poseId",posesController.deleteClientPoseById)
 
 
-app.listen(8080, ()=>
-    console.log("Server is running on http://localhost:8080")
+app.listen(3000, ()=>
+    console.log("Server is running on http://localhost:3000")
 );
 

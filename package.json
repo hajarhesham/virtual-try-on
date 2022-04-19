@@ -1,7 +1,6 @@
 {
-  "name": "node-project",
+  "name": "project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -19,5 +18,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohamed-Fathy-Salah/virtual-try-on.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mohamed-Fathy-Salah/virtual-try-on/issues"
+  },
+  "homepage": "https://github.com/Mohamed-Fathy-Salah/virtual-try-on#readme",
+  "description": ""
 }
