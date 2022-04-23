@@ -3,6 +3,9 @@ This project is the backend for our Graduation project 'virtural try on'.
 
 # main idea
 we take user's measurements and generate 3D body mesh.
+then the body mesh get dressed, with different (user defined) poses.
+pose is a collection of joints posiiton (24 joint * 3 coordinates (x, y, z)).
+that is why theta parameter is 72 floats.
 
 # API
 ## GET 
