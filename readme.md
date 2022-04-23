@@ -32,12 +32,6 @@ that is why theta parameter is 72 floats.
 ## PUT
 `/clients/:id`
 
-`/clients/:clientId/poses`
-
-`/clients/:clientId/photo`
-
-`/clients/:clientId/name`
-
 ## POST
 `/clients`
 
