@@ -37,26 +37,14 @@ app.get("/clients/:clientId/photo",clientsController.getPhotoById);
 // get client gender by id
 app.get("/clients/:clientId/gender",clientsController.getGenderById);
 
-
 // update client info 
 app.put("/clients/:id", clientsController.updateClientHandler);
-
-// update client poses
-app.put("/clients/:clientId/poses",clientsController.deleteClientPoses)
-
-// update client photo
-app.put("/clients/:clientId/photo",clientsController.deleteClientPhoto)
-
-// update client name
-app.put("/clients/:clientId/name",clientsController.deleteClientName)
-
 
 // add new pose
 app.post("/poses", posesController.createPoseHandler);
 
 // add new client 
 app.post("/clients", clientsController.createClientHandler);
-
 
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);

@@ -64,14 +64,8 @@ const getGenderById = asyncHandler(async (req,res) => {
 
 // add new client 
 const createClientHandler = asyncHandler(async (req, res) => {
-    const client = await Client.create({
-        name: req.body.name,
-        photo: req.body.photo,
-        gender: req.body.gender,
-        measurements: req.body.measurements,
-        poses: req.body.poses
-    })
-
+    const client = await Client.create(req.body)
+    console.log(req.body);
     res.status(200).json(client)
 });
 
@@ -79,8 +73,10 @@ const createClientHandler = asyncHandler(async (req, res) => {
 const updateClientHandler = asyncHandler(async (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    const clientIndex = await Client.updateOne({_id: id}, {$set: body});
-    res.status(200).send(clientIndex);
+    const response = await Client.updateOne({_id: id}, {$set: body});
+    console.log(id)
+    console.log(body)
+    res.status(200).send(response);
 });
 
 // delete client by id
@@ -104,8 +100,5 @@ module.exports = {
     updateClientHandler, 
     createClientHandler,
     deleteClientById,
-    deleteClientPoses,
-    deleteClientPhoto,
-    deleteClientName
 };
 
