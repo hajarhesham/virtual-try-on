@@ -1,5 +1,5 @@
 #baseimage
-FROM node
+FROM node:alpine
 
 #store all files to this dir
 WORKDIR /usr/src/app
