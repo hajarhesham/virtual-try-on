@@ -1,11 +1,23 @@
 const express = require("express");
 const clientsController = require("./clients-controller.js");
 const posesController = require("./poses-controller.js");
+const exphbs = require("express-handlebars")
 
 require('./config/db')();
 
 const app = express();
 app.use(express.json());
+
+// handlebars middleware
+app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
+app.set('view engine', 'handlebars');
+
+
+// to handle the form data
+app.use(express.urlencoded({extended: false}))
+
+app.get("/", (req, res) => res.render('index'));
+app.post("/", clientsController.createClientHandler);
 
 // get all clients
 app.get("/clients",clientsController.getClients);
@@ -44,7 +56,7 @@ app.put("/clients/:id", clientsController.updateClientHandler);
 app.post("/poses", posesController.createPoseHandler);
 
 // add new client 
-app.post("/clients", clientsController.createClientHandler);
+app.post("/clients/add", clientsController.createClientHandler);
 
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);

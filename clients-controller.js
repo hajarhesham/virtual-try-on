@@ -4,6 +4,8 @@ const Client = require('./models/clientModel')
 const getClients = asyncHandler(async (req,res) => {
     const clients = await Client.find()
     res.status(200).json(clients)
+    // res.render('index')
+    // render('index', {clients})
 }); 
 
 // get client by id
@@ -66,7 +68,7 @@ const getGenderById = asyncHandler(async (req,res) => {
 const createClientHandler = asyncHandler(async (req, res) => {
     const client = await Client.create(req.body)
     console.log(req.body);
-    res.status(200).json(client)
+    res.status(200).redirect('/clients')
 });
 
 // update client 
