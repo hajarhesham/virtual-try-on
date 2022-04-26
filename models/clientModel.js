@@ -5,13 +5,10 @@ const clientSchema = mongoose.Schema({
         type: String,
         required: [true, 'please enter your name']
     },
-
     photo: {
-        data: Buffer,
-        contentType: String,
-        // required: [true, 'enter your photo']
+        type: String,
+        required: [true, 'please enter your photo']
     },
-
     gender: {
         type: String,
         enum:["male","female"],
@@ -26,14 +23,15 @@ const clientSchema = mongoose.Schema({
         hip: Number,
         inseam: Number,
         sholder: Number
-    },
-
+    }
+    ,
     poses:[
         {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'Pose'
         }
     ]
+
 }, {
     timestamps: true
 });
