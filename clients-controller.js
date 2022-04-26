@@ -68,7 +68,7 @@ const getGenderById = asyncHandler(async (req,res) => {
 const createClientHandler = asyncHandler(async (req, res) => {
     const client = await Client.create(req.body)
     console.log(req.body);
-    res.status(200).redirect('/clients')
+    res.status(200).send(client)
 });
 
 // update client 
