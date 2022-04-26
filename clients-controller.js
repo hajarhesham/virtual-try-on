@@ -80,9 +80,8 @@ const getGenderById = asyncHandler(async (req,res) => {
 
 // add new client 
 const createClientHandler = asyncHandler(async (req, res) => {
+
     // add new client 
-
-
     upload(req, res, (err) => {
         if (err){
             console.log('error uploading image')

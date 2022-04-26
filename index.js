@@ -56,7 +56,7 @@ app.put("/clients/:id", clientsController.updateClientHandler);
 app.post("/poses", posesController.createPoseHandler);
 
 // add new client 
-app.post("/clients/add", clientsController.createClientHandler);
+app.post("/clients", clientsController.createClientHandler);
 
 // delete client by id
 app.delete("/clients/:clientId",clientsController.deleteClientById);
