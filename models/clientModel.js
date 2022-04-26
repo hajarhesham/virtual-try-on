@@ -9,7 +9,7 @@ const clientSchema = mongoose.Schema({
     photo: {
         data: Buffer,
         contentType: String,
-        required: [true, 'enter your photo']
+        // required: [true, 'enter your photo']
     },
 
     gender: {
