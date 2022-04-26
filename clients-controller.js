@@ -12,7 +12,7 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
     storage:Storage
-}).single('testImg')
+}).single('Img')
 
 
 const getClients = asyncHandler(async (req,res) => {
@@ -93,7 +93,8 @@ const createClientHandler = asyncHandler(async (req, res) => {
                 photo: {
                     data: req.file.filename,
                     contentType: 'image/png'
-                }
+                },
+                measurements:req.body.measurements
             })
             client.save()
             .then(res.status(200).redirect('/clients'))
