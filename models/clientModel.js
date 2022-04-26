@@ -6,8 +6,8 @@ const clientSchema = mongoose.Schema({
         required: [true, 'please enter your name']
     },
     photo: {
-        type: String,
-        required: [true, 'please enter your photo']
+        data: Buffer, 
+        contentType: String,
     },
     gender: {
         type: String,

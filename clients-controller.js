@@ -1,5 +1,19 @@
 const asyncHandler = require('express-async-handler')
 const Client = require('./models/clientModel')
+const multer = require('multer')
+
+
+const Storage = multer.diskStorage({
+    destination: "uploads",
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({
+    storage:Storage
+}).single('Img')
+
 
 const getClients = asyncHandler(async (req,res) => {
     const clients = await Client.find()
@@ -66,9 +80,31 @@ const getGenderById = asyncHandler(async (req,res) => {
 
 // add new client 
 const createClientHandler = asyncHandler(async (req, res) => {
-    const client = await Client.create(req.body)
-    console.log(req.body);
-    res.status(200).redirect('/clients')
+    // add new client 
+
+
+    upload(req, res, (err) => {
+        if (err){
+            console.log('error uploading image')
+        } else {
+            const client = new Client({
+                name: req.body.name,
+                gender: req.body.gender,
+                photo: {
+                    data: req.file.filename,
+                    contentType: 'image/png'
+                },
+                measurements:req.body.measurements
+            })
+            client.save()
+            .then(res.status(200).redirect('/clients'))
+        }
+    })
+
+    // const client = await Client.create(req.body)
+    // console.log(req.body);
+    // res.status(200).redirect('/clients')
+
 });
 
 // update client 
