@@ -27,9 +27,8 @@ pose is a collection of joints posiiton (24 joint * 3 coordinates (x, y, z)).
 that is why theta parameter is 72 floats.
 
 ## Image installation
-- Clone the repo: `https://github.com/Mohamed-Fathy-Salah/virtual-try-on`
-- Pull image: `docker pull hajarhesham/virtual-try-on:vton-project`
-- Run image: `docker run -p 3000:3000  hajarhesham/virtual-try-on:vton-project`
+- Pull image: `docker pull hajarhesham/virtual-try-on-project:virtual-try-on`
+- Run image: `docker run -p 3000:3000 hajarhesham/virtual-try-on-project:virtual-try-on`
 
 # API
 ## Read 
@@ -67,7 +66,7 @@ that is why theta parameter is 72 floats.
 `/poses/:poseId`
 
 # try it online
-follow this link : https://virtual-try-on-project.herokuapp.com/clients
+follow this link : https://virtual-try-on-project-test.herokuapp.com/
 
 
 
